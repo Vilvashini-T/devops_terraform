@@ -67,7 +67,7 @@ resource "aws_eip" "app_eip" {
 # ─── EC2 Instance ────────────────────────────────────────────────────────────
 resource "aws_instance" "app_server" {
   ami           = "ami-0c7217cdde317cfec" # Ubuntu 22.04 LTS
-  instance_type = "t3.small"
+  instance_type = var.instance_type
 
   key_name               = aws_key_pair.app_key.key_name
   vpc_security_group_ids = [aws_security_group.app_sg.id]
@@ -78,12 +78,16 @@ resource "aws_instance" "app_server" {
     volume_type = "gp3"
   }
 
+  tags = {
+    Name = var.app_name
+  }
+
   user_data_replace_on_change = true
 
   user_data = <<-EOF
 #!/bin/bash
 exec &> /var/log/cloud-init-output.log
-echo "======= STARTING MASTER DEPLOYMENT (PORT 80 + LOGIN FIX) ======="
+echo "======= STARTING AUTOMATED DEPLOYMENT ======="
 
 export DEBIAN_FRONTEND=noninteractive
 apt-get update -y
@@ -140,6 +144,6 @@ pm2 start serve --name frontend -- -s dist -l 80
 # 7. Persistence
 pm2 save
 pm2 startup systemd -u ubuntu --hp /home/ubuntu
-echo "======= MASTER DEPLOYMENT COMPLETE ======="
+echo "======= AUTOMATED DEPLOYMENT COMPLETE ======="
 EOF
 }

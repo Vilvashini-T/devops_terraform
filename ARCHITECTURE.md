@@ -29,7 +29,7 @@ This project deploys a full-stack MERN web application on AWS using Terraform. T
                         │  │  ❌ All else │  │  └───────────┘  │  │
                         │  └──────────────┘  │  ┌───────────┐  │  │
                         │                    │  │  MongoDB  │  │  │
-                        │  ┌──────────────┐  │  │(Port27017)│  │  │
+                        │  ┌──────────────┐  │  │(Port 27017)│  │  │
                         │  │  IAM Role    │  │  └───────────┘  │  │
                         │  │ (SSM Access) │  └─────────────────┘  │
                         │  └──────────────┘                       │
@@ -46,9 +46,9 @@ This project deploys a full-stack MERN web application on AWS using Terraform. T
 | Elastic IP | `app_eip` | A permanent static public IP — does not change on restart |
 | Security Group | `app_sg` | Cloud firewall — only opens the ports our app needs |
 | IAM Role | `ssm_role` | Gives the server permission to use AWS Systems Manager |
-| SSH Key Pair | `app_key` | Allows secure SSH access to the server |
-| TLS Private Key | `app_key` | Auto-generates the RSA 4096-bit key (no manual setup!) |
-| Local File | `private_key` | Saves the SSH `.pem` key to your local machine |
+| SSH Key Pair | `aws_key_pair.app_key` | Registers the public key with AWS for server login |
+| TLS Private Key | `tls_private_key.app_key` | Auto-generates the RSA 4096-bit private key locally |
+| Local File | `local_file.private_key` | Saves the `.pem` private key file to your machine |
 
 ---
 
