@@ -80,3 +80,11 @@ terraform destroy -auto-approve
 ```
 
 > 📖 See [DEPLOYMENT.md](./DEPLOYMENT.md) for the full step-by-step guide with screenshots and troubleshooting.
+
+---
+
+## 📄 Presentation
+
+The full viva presentation slides for this project are available here:
+
+👉 [DevOps_Viva_Presentation.pdf](./DevOps_Viva_Presentation.pdf)
