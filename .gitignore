@@ -1,0 +1,14 @@
+# Ignore Terraform state and lock files
+.terraform/
+.terraform.lock.hcl
+*.tfstate
+*.tfstate.backup
+
+# Ignore SSH keys (CRITICAL)
+*.pem
+
+# Ignore the cloned app repo if you don't want to nest git repositories
+student-notebooks-mern-aws/
+
+# Ignore editor folders
+.vscode/
